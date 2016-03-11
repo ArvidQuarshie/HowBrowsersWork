@@ -1,0 +1,83 @@
+﻿The browser's high level structure
+The browser's main components are (1.1): 
+1. The user interface: this includes the address bar, back/forward button, bookmarking menu, etc. Every part of the browser display except the window where you see the requested page. 
+2. The browser engine: marshals actions between the UI and the rendering engine. 
+3. The rendering engine : responsible for displaying requested content. For example if the requested content is HTML, the rendering engine parses HTML and CSS, and displays the parsed content on the screen. 
+4. Networking: for network calls such as HTTP requests, using different implementations for different platform behind a platform-independent interface. 
+5. UI backend: used for drawing basic widgets like combo boxes and windows. This backend exposes a generic interface that is not platform specific. Underneath it uses operating system user interface methods. 
+6. JavaScript interpreter. Used to parse and execute JavaScript code. 
+7. Data storage. This is a persistence layer. The browser may need to save all sorts of data locally, such as cookies. Browsers also support storage mechanisms such as localStorage, IndexedDB, WebSQL and FileSystem. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+arvindr21.github.io/howBrowserWorks/
+
+A browser has a UI (user interface) that most commonly includes an address bar, back/forward button, and reload button. Sometimes developers refer to this as the “chrome” (little “c”, not Chrome by Google) of a browser. When you navigate to a URL in the address bar you are making a “request” for the content at that URL.
+
+That URL you typed into the address bar maps to an IP address. This is called a DNS lookup. DNS stands for “Domain Name System” and it maps numeric computer addresses to human readable names. All computers have an IP address. You can find out your personal computer’s IP address by typing “ifconfig” into your terminal window and looking for the number that is displayed in dot decimal format, such as 000.000.000.000. (Note that 127.0.0.1 is used in your computer internally to refer to itself).
+For example, one IP address for Google is 74.125.134.102. You can enter 74.125.134.102 in the address bar and it will show the contents at www.google.com.
+As this HTML response is being sent to your browser, the browser’s rendering engine is displaying the requested content on your screen. To accomplish this the rendering engine “parses” the HTML and creates a DOM tree.
+
+
+How Do Web Browsers Work?
+The World Wide Web is a system of Internet servers that support specially formatted documents. Web browsers are used to make it easy to access the World Wide Web. Browsers are able to display Web pages largely in part to an underlying Web protocol called HyperText Transfer Protocol (HTTP). HTTP defines how messages are formatted and transmitted, and what actions Web servers and browsers should take in response to various commands. It is what allows Web clients and Web servers to communicate with each other. When you enter a Web address (URL) in your browser, this actually sends an HTTP command to the Web server directing it to fetch and transmit the requested Web page and display the information in your browser. All Web servers serving Web sites and pages support the HTTP protocol.
+Example: The URL to reach the definition of browser on Webopedia is: http://www.webopedia.com/browser.html
+Once you enter the URL "http://www.webopedia.com/browser.html" into your address line, the browser breaks that Web address down into three distinct parts.
+1. he Protocol: "http" 
+2. The server name: "www.webopedia.com" 
+3. The file name, which follows the server name: "browser.html" 
+In order for your browser to actually connect to the Web server to retrieve the information you request, it communicates with a name server to translate the server name into an IP address. Your Web browser is then able to connect to the Web server at the resolved IP address on port 80. Once your browser has connected to the Web server using HTTP, the browser then reads the HyperText Markup Language (HTML), the authoring language used to create documents on the World Wide Web, and the data is then displayed in your Web browser.
+A Web browser is actually a software application that runs on your Internet-connected computer. It allows you to view Web pages, as well as use other content and technologies such as video, graphics files, and digital certificates, to name a few. Some browsers will translate only text while others do support graphics and animation. Web browsers are not all created equal, and Web pages also will not be displayed the same in different browsers.
+
+
+How the Web works
+
+How the Web works provides a simplified view of what happens when you view a webpage in a web browser on your computer or phone.
+This theory is not essential to writing web code in the short term, but before long you'll really start to benefit from understanding what's happening in the background.
+Clients and serversEdit
+Computers connected to the Web are called clients and servers. A simplified diagram of how they interact might look like this:
+
+Clients are the typical Web user's Internet-connected devices (for example, your computer connected to your Wi-Fi, or your phone connected to your mobile network) and Web-accessing software available on those devices (usually a web browser like Firefox or Chrome). 
+Servers are computers that store webpages, sites, or apps. When a client device wants to access a webpage, a copy of the webpage is downloaded from the server onto the client machine to be displayed in the user's web browser. 
+The other parts of the toolboxEdit
+The client and server we've described above don't tell the whole story. There are many other parts involved, and we'll describe them below.
+For now, let's imagine that the Web is a road. On one end of the road is the client, which is like your house. On the other end of the road is the server, which is a shop you want to buy something from.
+
+In addition to the client and the server, we also need to say hello to:
+Your Internet connection: Allows you to send and receive data on the Web. It's basically like the street between your house and the shop. 
+TCP/IP: Transmission Control Protocol and Internet Protocol are communication protocols that define how data should travel across the Web. This is like the transport mechanisms that let you to place an order, go to the shop, and buy your goods. In our example, this is like a car or a bike (or your own two feet). 
+DNS: Domain Name System Servers are like an address book for websites. When you type a web address in your browser, the browser looks at the DNS before retrieving the website. The browser needs to find out which server the website lives on, so it can send HTTP messages to the right place (see below). This is like looking up the address of the shop so you can access it. 
+HTTP: Hypertext Transfer Protocol is an application protocol that defines a language for clients and servers to speak to each other. This is like the language you use to order your goods. 
+Component files: A website is made up of many different files, which are like the different parts of the goods you buy from the shop. These files come in two main types: 
+Code files: Websites are built primarily from HTML, CSS, and JavaScript, though you'll meet other technologies a bit later. 
+Assets: This is a collective name for all the other stuff that makes up a website, such as images, music, video, Word documents, and PDFs. 
+So what happens, exactly?
+When you type a web address into your browser (for our analogy that's like walking to the shop):
+1. The browser goes to the DNS server and finds the real address of the server that the website lives on (you find the address of the shop). 
+2. The browser sends an HTTP request message to the server asking it to send a copy of the website to the client (you go to the shop and order your goods). This message, and all other data sent between the client and the server, is sent across your internet connection using TCP/IP. 
+3. Provided the server approves the client's request, the server sends the client a "200 OK" message, which means "Of course you can look at that website! Here it is", and then starts sending the website's files to the browser as a series of small chunks called data packets (the shop gives you your goods, and you bring them back to your house). 
+4. The browser assembles the small chunks into a complete website and displays it to you (the goods arrive at your door — new stuff, awesome!). 
+DNS explainedEdit
+Real web addresses aren't the nice, memorable strings you type into your address bar to find your favorite websites. They are strings of numbers, like this: 63.245.217.105.
+This is called an IP address, and it represents a unique location on the Web. However, it's not very easy to remember, is it? That's why Domain Name Servers were invented. These are special servers that match up a web address you type into your browser (like "mozilla.org") to the website's real (IP) address.
+Websites can be reached directly via their IP addresses. Try going to the Mozilla website by typing 63.245.217.105 into the address bar on a new browser tab.
+
+Packets explainedEdit
+Earlier we used the term "packets" to describe the format in which the data is sent from server to client. What do we mean here? Basically, when data is sent across the Web, it is sent as thousands of small chunks, so that many different web users can download the same website at the same time. If web sites were sent as single big chunks, only one user could download one at a time, which obviously would make the Web very inefficient and not much fun to use.
+
+
+
+Reference 
+http://www.webopedia.com/quick_ref/internet_browsers.asp
+arvindr21.github.io/howBrowserWorks
+https://developer.mozilla.org/en-US/Learn/Getting_started_with_the_web/How_the_Web_works
